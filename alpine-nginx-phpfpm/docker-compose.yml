@@ -1,0 +1,36 @@
+version: '2'
+services:
+    php:
+        image: php:7.0-fpm-alpine
+        container_name: php7
+        volumes:
+            - ./php_work:/var/www/html/
+            - .phplog:/var/log/php-fpm
+        #depends_on:
+        # - db
+        #db:
+        #image: k0st/alpine-mariadb:latest
+        #container_name: mariadb
+        #volumes:
+        #    - .mysql:/var/lib/mysql
+        #restart: always
+        #environment:
+        #    MYSQL_ROOT_PASSWORD: udinaja
+        #    MYSQL_DATABASE: pjci2
+        #    MYSQL_USER: mardin
+        #    MYSQL_PASSWORD: basket26
+    nginx:
+        image: nginx:stable-alpine
+        container_name: nginx
+        ports:
+            - "8080:80"
+        volumes:
+            - .nginxlog:/var/log/nginx
+            - ./php_work:/var/www/html
+            - ./etc/site.conf:/etc/nginx/conf.d/site.conf
+        depends_on:
+            - php
+    #    volumes_from:
+    #        - php
+    #    volumes:
+    #        - .nginxlog:/var/log/nginx
