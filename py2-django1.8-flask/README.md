@@ -1,4 +1,4 @@
-# Alpine django 1.8 with flask and postgresql
+# Alpine django 1.8 with flask 
 
 This is build `Dockerfile` using alpine image python:2-alpine for django 1.8 with flask.
 
