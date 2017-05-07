@@ -15,10 +15,10 @@ services:
         #    - .mysql:/var/lib/mysql
         #restart: always
         #environment:
-        #    MYSQL_ROOT_PASSWORD: udinaja
-        #    MYSQL_DATABASE: pjci2
-        #    MYSQL_USER: mardin
-        #    MYSQL_PASSWORD: basket26
+        #    MYSQL_ROOT_PASSWORD: rootpass
+        #    MYSQL_DATABASE: db
+        #    MYSQL_USER: user
+        #    MYSQL_PASSWORD: pass
     nginx:
         image: nginx:stable-alpine
         container_name: nginx
