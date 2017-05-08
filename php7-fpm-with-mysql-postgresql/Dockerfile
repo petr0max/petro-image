@@ -2,7 +2,7 @@ FROM php:7.0-fpm-alpine
 
 MAINTAINER Mardin Wijaya - https://github.com/mardinw
 
-RUN apk update && apk add freetype-dev \
+RUN apk update && apk add --no-cache freetype-dev \
     libjpeg-turbo-dev \
     libmcrypt-dev \
     libpng-dev \
