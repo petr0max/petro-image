@@ -9,6 +9,4 @@ RUN apk update && apk add --no-cache gcc \
     postgresql-client \
     sqlite
 
-RUN apk del -r python2-dev postgresql
-
 RUN pip install psycopg2 django==1.8 flask gunicorn 
