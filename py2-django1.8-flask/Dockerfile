@@ -4,6 +4,7 @@ MAINTAINER Mardin Wijaya - https://github.com/mardinw
 
 RUN apk update && apk add --no-cache mariadb-dev \
     mariadb-client \
+    postgresql-dev \
     postgresql-client \
     sqlite
 
