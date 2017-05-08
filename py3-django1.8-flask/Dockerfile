@@ -1,5 +1,7 @@
-FROM python:3.5-alpine
+FROM python:3-alpine
 
 MAINTAINER Mardin Wijaya - https://github.com/mardinw
 
-RUN pip install django==1.8 flask gunicorn 
+RUN apk update && apk add postgresql-dev postgresql-client
+
+RUN pip install django==1.8 flask gunicorn psycopg2 
