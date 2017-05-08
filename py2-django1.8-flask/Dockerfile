@@ -2,4 +2,4 @@ FROM python:2-alpine
 
 MAINTAINER Mardin Wijaya - https://github.com/mardinw
 
-RUN pip install psycopg2 django==1.8 flask gunicorn 
+RUN pip install django==1.8 flask gunicorn 
