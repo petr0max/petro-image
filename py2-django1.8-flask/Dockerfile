@@ -4,12 +4,12 @@ MAINTAINER Mardin Wijaya - https://github.com/mardinw
 
 RUN apk update && apk add --no-cache gcc \
     gettext \
+    build-base \
     mariadb-dev \
     mariadb-client \
     postgresql-dev \
     postgresql-client \
-    sqlite
+    sqlite \
+    && rm -rf /var/cache/apk/*
 
-ENV DJANGO_VERSION 1.8
-
-RUN pip install mysqlclient pyGreSQL psycopg2 django=="$DJANGO_VERSION" flask
+RUN pip install psycopg2 django==1.8 flask gunicorn 
