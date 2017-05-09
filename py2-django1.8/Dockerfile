@@ -8,4 +8,4 @@ RUN apk update && apk add --no-cache gcc \
     linux-headers \
     postgresql-client postgresql-dev 
 
-RUN pip install django==1.8 psycopg2 
+RUN pip install --no-cache-dir django==1.8 psycopg2 
