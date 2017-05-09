@@ -1,7 +1,10 @@
-FROM python:2-alpine
+FROM python:3.5-alpine
 
 MAINTAINER Mardin Wijaya - https://github.com/mardinw
 
-RUN apk update && apk add postgresql-dev postgresql-client
+RUN apk update && apk add gcc \
+    gettext \
+    musl-dev \
+    postgresql-client postgresql-dev 
 
-RUN pip install django==1.8 flask gunicorn psycopg2 
+RUN pip install django==1.8 psycopg2 
