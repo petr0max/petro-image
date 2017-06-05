@@ -1,4 +1,4 @@
-Docker + Alpine-latest + Mysql/MariaDB-10.1.18
+Docker + Alpine-latest + MariaDB-latest
 
 #### parameter
 
