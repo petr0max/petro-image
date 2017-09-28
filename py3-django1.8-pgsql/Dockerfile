@@ -1,13 +1,6 @@
-FROM python:alpine
+FROM alpine:3.4
 
 MAINTAINER Mardin Wijaya - https://github.com/mardinw
 
-RUN apk update && apk add --no-cache gcc \
-    gettext \
-    musl-dev \
-    linux-headers \
-    postgresql-client postgresql-dev 
-
-RUN pip install --no-cache-dir django==1.8.18 psycopg2 
-
-RUN apk del -r gcc gettext musl-dev linux-headers postgresql
+RUN apk update && apk add --no-cache python3 \
+    python3-dev
