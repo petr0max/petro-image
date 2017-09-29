@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM python:alpine
 
 MAINTAINER Mardin Wijaya - https://github.com/mardinw
 
@@ -8,9 +8,7 @@ WORKDIR /var/www/html
 COPY requirements.txt /var/www/html
 
 # Setup
-RUN apk update && apk add --no-cache python3 \
-    python3-dev \
-    postgresql-client \
+RUN apk update && apk add --no-cache postgresql-client \
     postgresql-dev \
     build-base \
     gettext
@@ -19,7 +17,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 # Clean
-RUN apk del -r python3-dev postgresql postgresql-dev build-base gettext 
+RUN apk del -r postgresql postgresql-dev build-base gettext 
 RUN rm -Rf ~/.cache
 RUN rm -Rf /var/cache/apk/* && \
     echo "Success"
