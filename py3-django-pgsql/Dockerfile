@@ -19,7 +19,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 # Clean
-RUN apk del -r python3-dev postgresql
+RUN apk del -r python3-dev postgresql postgresql-dev build-base gettext
 
 # Prepare
 COPY . /var/www/html/
