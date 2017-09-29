@@ -1,4 +1,5 @@
 Django==1.8.18
 gunicorn
 psycopg2
-SQLAlchemy
+redis
+django-redis
