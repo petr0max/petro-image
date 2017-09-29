@@ -1,5 +1,0 @@
-Django
-gunicorn
-mysqlclient
-redis
-django-redis

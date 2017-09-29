@@ -1,5 +1,5 @@
 Django
 gunicorn
-psycopg2
 redis
 django-redis
+SQLAlchemy
