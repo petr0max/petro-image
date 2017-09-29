@@ -21,6 +21,8 @@ RUN pip3 install -r requirements.txt
 # Clean
 RUN apk del -r python3-dev postgresql postgresql-dev build-base gettext 
 RUN rm -Rf ~/.cache
+RUN rm -Rf /var/cache/apk/* && \
+    echo "Success"
 
 # Prepare
 COPY . /var/www/html/
