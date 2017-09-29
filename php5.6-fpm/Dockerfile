@@ -7,6 +7,6 @@ RUN apk update && apk add --no-cache freetype-dev \
     libmcrypt-dev \
     libpng-dev \
     postgresql-dev \
-    && docker-php-ext-install -j2 iconv mcrypt \
+    && docker-php-ext-install -j${nproc} iconv mcrypt \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j2 gd pdo mysqli pdo_mysql pgsql pdo_pgsql
+    && docker-php-ext-install -j${nproc} gd pdo mysqli pdo_mysql pgsql pdo_pgsql
