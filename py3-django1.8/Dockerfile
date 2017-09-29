@@ -15,8 +15,8 @@ RUN apk update && apk add --no-cache python3 \
     build-base \
     gettext
 
-RUN pip3 install --upgrade pip
-RUN pip3 install -r requirements.txt
+RUN pip3 install --upgrade --no-cache-dir pip
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Clean
 RUN apk del -r python3-dev postgresql-dev postgresql build-base gettext
