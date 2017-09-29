@@ -1,36 +1,36 @@
 version: '2'
 services:
-    php:
-        image: php:7.0-fpm-alpine
-        container_name: php7
+    web:
+        image: dx46/php56fpm-with-mysql-postgresql
+        container_name: php
+        restart: always
         volumes:
-            - ./php_work:/var/www/html/
+            - $HOME/public_html:/var/www/html/
             - .phplog:/var/log/php-fpm
-        #depends_on:
-        # - db
-        #db:
-        #image: k0st/alpine-mariadb:latest
-        #container_name: mariadb
-        #volumes:
-        #    - .mysql:/var/lib/mysql
-        #restart: always
+        depends_on:
+            - db
+    db:
+        image: dx46/mariadb-alpine 
+        container_name: mariadb
+        volumes:
+            - .mysql:/var/lib/mysql
+            - ./etc/mariadb_init.sh:/mariadb_init.sh
+            - ./etc/run.sh:/run.sh
+        restart: always
         #environment:
-        #    MYSQL_ROOT_PASSWORD: rootpass
-        #    MYSQL_DATABASE: db
-        #    MYSQL_USER: user
-        #    MYSQL_PASSWORD: pass
+        #        MYSQL_ROOT_PASSWORD: udin4j4
+        #        MYSQL_DATABASE: testdb
+        #        MYSQL_USER: udin
+        #        MYSQL_PASSWORD: rahasia
     nginx:
         image: nginx:stable-alpine
         container_name: nginx
+        restart: always
         ports:
             - "8080:80"
         volumes:
             - .nginxlog:/var/log/nginx
-            - ./php_work:/var/www/html
+            - $HOME/public_html:/var/www/html
             - ./etc/site.conf:/etc/nginx/conf.d/site.conf
         depends_on:
-            - php
-    #    volumes_from:
-    #        - php
-    #    volumes:
-    #        - .nginxlog:/var/log/nginx
+            - web
