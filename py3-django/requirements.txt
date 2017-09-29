@@ -3,4 +3,3 @@ gunicorn
 psycopg2
 redis
 django-redis
-mysqlclient
