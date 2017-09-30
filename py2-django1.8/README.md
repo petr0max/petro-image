@@ -1,5 +1,7 @@
-# Alpine django 1.8 
+# Alpine django 
 
-This is build `Dockerfile` using alpine image python:2-alpine for django 1.8.
+This is image using image Alpine.
+You can pull image using tag.
 
-You can pull using `docker pull dx46/py2-django1.8:django-1.8`
+For django 1.8 python2 `docker pull dx46/django-py3:1.8`
+For django latest python2 `docker pull dx45/django-py3:latest`
