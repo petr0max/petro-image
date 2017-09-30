@@ -9,6 +9,3 @@ COPY requirements.txt /var/www/html
 
 RUN pip3 install --upgrade --no-cache-dir pip
 RUN pip3 install --no-cache-dir -r requirements.txt
-
-# Prepare
-COPY . /var/www/html/
