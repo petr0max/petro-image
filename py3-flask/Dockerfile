@@ -1,11 +1,14 @@
-FROM python:3.5-alpine
+FROM python:alpine
 
 MAINTAINER Mardin Wijaya - https://github.com/mardinw
 
-RUN apk update && apk add --no-cache gcc \
-    gettext \
-    musl-dev \
-    linux-headers \
-    postgresql-client postgresql-dev 
+# Initialize
+RUN mkdir -p /var/www/html
+WORKDIR /var/www/html
+COPY requirements.txt /var/www/html
 
-RUN pip install --no-cache-dir flask psycopg2 
+RUN pip3 install --upgrade --no-cache-dir pip
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Prepare
+COPY . /var/www/html/
