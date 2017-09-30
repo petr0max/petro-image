@@ -1,5 +1,7 @@
-# Alpine flask 
+# Alpine django 
 
-This is build `Dockerfile` using alpine image python:2-alpine for flask.
+This is image using image Alpine.
+You can pull image using tag.
 
-You can pull using `docker pull dx46/py2-flask`
+For django 1.8 `docker pull dx46/django-py3:1.8`
+For django latest `docker pull dx45/django-py3:latest`
