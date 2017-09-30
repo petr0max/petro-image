@@ -9,6 +9,3 @@ COPY requirements.txt /var/www/html
 
 RUN pip install --upgrade --no-cache-dir pip
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Prepare
-COPY . /var/www/html/
