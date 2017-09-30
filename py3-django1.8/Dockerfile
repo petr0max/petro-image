@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM python:alpine
 
 MAINTAINER Mardin Wijaya - https://github.com/mardinw
 
@@ -7,18 +7,8 @@ RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
 COPY requirements.txt /var/www/html
 
-# Setup
-RUN apk update --progress && apk add --progress --no-cache python3 \
-    python3-dev
-
 RUN pip3 install --upgrade --no-cache-dir pip
 RUN pip3 install --no-cache-dir -r requirements.txt
-
-# Clean
-RUN apk del -r python3-dev
-RUN rm -Rf ~/.cache
-RUN rm -Rf /var/cache/apk/* && \
-    echo "Success"
 
 # Prepare
 COPY . /var/www/html/
