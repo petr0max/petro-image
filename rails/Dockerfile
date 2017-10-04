@@ -3,7 +3,7 @@ FROM ruby:alpine
 MAINTAINER Mardin Wijaya - https://github.com/mardinw
 
 RUN apk update && apk add --no-cache \
-    mariadb-dev
+    mariadb-dev \
     postgresql-dev
 
 RUN rm -f /var/cache/apk/* && \
