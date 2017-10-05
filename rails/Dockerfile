@@ -18,4 +18,5 @@ RUN gem install -N rails && \
 	echo 'gem: --no-document' >> ~/.gemrc && \
 	cp ~/.gemrc /etc/gemrc && \
 	chmod uog+r /etc/gemrc && \
-	rm -rf ~/.gem
+	rm -rf ~/.gem && \
+	apk del mariadb-dev postgresql-dev build-base
