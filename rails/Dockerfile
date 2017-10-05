@@ -5,6 +5,7 @@ MAINTAINER Mardin Wijaya - https://github.com/mardinw
 RUN apk update && apk add --no-cache \
     mariadb-dev \
     postgresql-dev \
+    sqlite-dev \
     build-base
 
 RUN rm -f /var/cache/apk/* && \
