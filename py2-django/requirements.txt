@@ -1,6 +1,5 @@
-Django
+Django==1.11.18
 gunicorn
+SQLAlchemy
 redis
 django-redis
-SQLAlchemy
-ujson

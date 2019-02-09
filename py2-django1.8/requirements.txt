@@ -1,5 +1,0 @@
-Django==1.8.18
-gunicorn
-SQLAlchemy
-redis
-django-redis
