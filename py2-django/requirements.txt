@@ -1,4 +1,4 @@
-Django==1.11.18
+Django>=1.11.19
 gunicorn
 SQLAlchemy
 redis
