@@ -1,36 +1,44 @@
-version: '2'
+version: '3.5'
 services:
-    web:
-        image: dx46/php56fpm-with-mysql-postgresql
+    php:
+        image: dx46/php-fpm:7.2
+        networks:
+          app_net:
+            ipv4_address: 172.18.0.2
         container_name: php
-        restart: always
         volumes:
-            - $HOME/public_html:/var/www/html/
-            - .phplog:/var/log/php-fpm
-        depends_on:
-            - db
-    db:
-        image: dx46/mariadb-alpine 
-        container_name: mariadb
-        volumes:
-            - .mysql:/var/lib/mysql
-            - ./etc/mariadb_init.sh:/mariadb_init.sh
-            - ./etc/run.sh:/run.sh
-        restart: always
-        #environment:
-        #        MYSQL_ROOT_PASSWORD: udin4j4
-        #        MYSQL_DATABASE: testdb
-        #        MYSQL_USER: udin
-        #        MYSQL_PASSWORD: rahasia
+          - $HOME/Public:/var/www/html/
+          - .phplog:/var/log/php-fpm
     nginx:
-        image: nginx:stable-alpine
+        image: nginx:1.14-alpine 
         container_name: nginx
-        restart: always
-        ports:
-            - "8080:80"
-        volumes:
-            - .nginxlog:/var/log/nginx
-            - $HOME/public_html:/var/www/html
-            - ./etc/site.conf:/etc/nginx/conf.d/site.conf
         depends_on:
-            - web
+          - php
+          - postgres
+        networks:
+          app_net:
+            ipv4_address: 172.18.0.3
+                #- frontend
+                #- backend
+        ports:
+          - "8080:80"
+        volumes:
+          - $HOME/Public:/var/www/html/
+          - .nginxlog:/var/log/nginx
+          - ./etc/site.conf:/etc/nginx/conf.d/site.conf
+    postgres:
+        image: postgres:9-alpine
+        container_name: postgres
+        networks:
+          app_net:
+              ipv4_address: 172.18.0.4
+              #- backend
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+networks:
+  app_net:
+    ipam:
+      driver: default 
+      config:
+        - subnet: 172.18.0.0/24
