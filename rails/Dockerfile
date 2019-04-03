@@ -2,7 +2,7 @@ FROM ruby:alpine
 
 MAINTAINER Mardin Wijaya - https://github.com/mardinw
 
-RUN apk update && apk add --no-cache \
+RUN apk add --no-cache \
     mariadb-dev \
     postgresql-dev \
     sqlite-dev \
@@ -20,3 +20,5 @@ RUN gem install -N rails && \
 	cp ~/.gemrc /etc/gemrc && \
 	chmod uog+r /etc/gemrc && \
 	rm -rf ~/.gem
+
+ENTRYPOINT ["rails"]
