@@ -7,10 +7,10 @@ services:
         ipv4_address: 172.18.0.2
     container_name: php
     volumes:
-      - $HOME/Public/dev/learn/lpmj/ci3:/var/www/html/
+      - $HOME/Public/dev/:/var/www/html/
       - .phplog:/var/log/php-fpm
   nginx:
-    image: nginx:1.14-alpine 
+    image: nginx:alpine 
     container_name: nginx
     depends_on:
       - php
@@ -21,12 +21,14 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - $HOME/Public/dev/learn/lpmj/ci3:/var/www/html/
+      - $HOME/Public/dev/:/var/www/html/
       - .nginxlog:/var/log/nginx
       - ./etc/site.conf:/etc/nginx/conf.d/site.conf
   db:
     image: dx46/mariadb-alpine
     container_name: db
+    volumes:
+      - .mysql:/var/lib/mysql
     networks:
       app_net:
         ipv4_address: 172.18.0.4
