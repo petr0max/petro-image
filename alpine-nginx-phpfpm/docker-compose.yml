@@ -1,21 +1,21 @@
 version: '3.5'
 services:
-  php:
-    image: dx46/php-fpm:7.4
-    networks:
-      app_net:
-        ipv4_address: 172.18.0.2
-    container_name: php
-    volumes:
-      - $HOME/Public/projek/:/var/www/html/
-      - .phplog:/var/log/php-fpm
+  #php:
+  #  image: dx46/php-fpm:7.4
+  #  networks:
+  #    app_net:
+  #      ipv4_address: 172.18.0.2
+  #  container_name: php
+  #  volumes:
+  #    - $HOME/Public/projek/:/var/www/html/
+  #    - .phplog:/var/log/php-fpm
   nginx:
     image: nginx:alpine 
     container_name: nginx
     depends_on:
-      - php
       - db1
       - db2
+      - db3
     networks:
       app_net:
         ipv4_address: 172.18.0.3
@@ -51,6 +51,17 @@ services:
     environment:
       - MYSQL_USER=mardin
       - MYSQL_PASSWORD=udin4j4
+  db3:
+    image: redis:5-alpine
+    container_name: db3
+    networks:
+      app_net:
+        ipv4_address: 172.18.0.6
+    ports:
+      - 6379:6379
+    volumes:
+      - ./etc/redis.conf:/redis.conf
+    command: ["redis-server", "/redis.conf"]
 networks:
   app_net:
     ipam:
