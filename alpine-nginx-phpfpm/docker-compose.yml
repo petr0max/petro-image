@@ -27,17 +27,20 @@ services:
       - .nginxlog:/var/log/nginx
       - ./etc/site.conf:/etc/nginx/conf.d/site.conf
   db1:
+    restart: always
     image: postgres:12-alpine
     container_name: db1
     volumes:
-      - .postg:/var/lib/pgsql/data/
+      - .postg:/var/lib/postgresql/data/:rw
     networks:
       app_net:
         ipv4_address: 172.18.0.4
     environment:
       - POSTGRES_USER=petro
       - POSTGRES_PASSWORD=udin4j4
+      - PGDATA:/var/lib/postgresql/data
   db2:
+    restart: always
     image: dx46/mariadb-alpine
     container_name: db2
     volumes:
