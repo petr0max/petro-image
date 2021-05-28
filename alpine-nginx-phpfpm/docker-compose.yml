@@ -58,10 +58,10 @@ services:
       app_net:
         ipv4_address: 172.18.0.6
     ports:
-      - 6379:6379
+      - "6379:6379"
     volumes:
-      - ./etc/redis.conf:/redis.conf
-    command: ["redis-server", "/redis.conf"]
+      - .redisdata:/data:rw
+      #- ./etc/redis.conf:/redis.conf
 networks:
   app_net:
     ipam:
