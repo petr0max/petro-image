@@ -20,4 +20,4 @@ WORKDIR /home/flasky
 COPY requirements requirements
 RUN python -m venv venv
 RUN venv/bin/pip install --upgrade --no-cache-dir pip 
-RUN venv/bin/pip install no-cache-dir -r requirements/docker.txt
+RUN venv/bin/pip install --no-cache-dir -r requirements/docker.txt
