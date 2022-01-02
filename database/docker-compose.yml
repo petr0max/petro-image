@@ -1,0 +1,72 @@
+version: '3.5'
+services:
+  #php:
+  #  image: dx46/php-fpm:7.4
+  #  networks:
+  #    app_net:
+  #      ipv4_address: 172.18.0.2
+  #  container_name: php
+  #  volumes:
+  #    - $HOME/Public/projek/:/var/www/html/
+  #    - .phplog:/var/log/php-fpm
+  #nginx:
+  #  image: nginx:alpine 
+  #  container_name: nginx
+  #  depends_on:
+  #    - db1
+  #    - db2
+  #    - db3
+  #  networks:
+  #    app_net:
+  #      ipv4_address: 172.18.0.3
+  #  ports:
+  #    - "8080:80"
+  #  volumes:
+  #    - $HOME/Public/projek/:/var/www/html/
+  #    - $HOME/Public/dok/:/var/www/html/dok/
+  #    - .nginxlog:/var/log/nginx
+  #    - ./etc/site.conf:/etc/nginx/conf.d/site.conf
+  db1:
+    restart: always
+    image: postgres:12-alpine
+    container_name: db1
+    volumes:
+      - .postg:/var/lib/postgresql/data/:rw
+    networks:
+      app_net:
+        ipv4_address: 172.18.0.4
+    environment:
+      - POSTGRES_USER=petro
+      - POSTGRES_PASSWORD=udin4j4
+      - PGDATA:/var/lib/postgresql/data
+  #db2:
+  #  restart: always
+  #  image: mariadb:10.7-focal 
+  #  container_name: db2
+  #  volumes:
+  #    - .mysql:/var/lib/mysql
+  #  networks:
+  #    app_net:
+  #      ipv4_address: 172.18.0.5
+
+  #  ports:
+  #    - 3306:3306
+  #  environment:
+  #      MYSQL_ROOT_PASSWORD: "udin4j4"
+  db3:
+    image: redis:5-alpine
+    container_name: db3
+    networks:
+      app_net:
+        ipv4_address: 172.18.0.6
+    ports:
+      - "6379:6379"
+    volumes:
+      - .redisdata:/data:rw
+      #- ./etc/redis.conf:/redis.conf
+networks:
+  app_net:
+    ipam:
+      driver: default 
+      config:
+        - subnet: 172.18.0.0/24
